@@ -1,0 +1,57 @@
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+cache:
+  paths:
+    - .terraform
+
+before_script:
+  - terraform --version
+  - cd terraform
+  - terraform init
+
+stages:
+  - validate
+  - build
+  - deploy
+
+validate:
+  stage: validate
+  script:
+   - terraform validate
+
+plan:
+  stage: build
+  script:
+   - terraform plan
+  artifacts:
+    name: plan
+
+apply:
+  stage: deploy
+  environment:
+    name: production
+  script:
+   - terraform apply -auto-approve
+  dependencies:
+   - plan
+  when: manual
+  only:
+   - master
+
+destroy:
+  stage: deploy
+  environment:
+    name: production
+  script:
+   - terraform destroy -auto-approve
+  dependencies:
+   - plan
+  when: manual
+  only:
+   - master
+
+# EOF
