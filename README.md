@@ -1,3 +1,4 @@
+[![pipeline status](https://gitlab.com/joewww/ethereum_node/badges/master/pipeline.svg)](https://gitlab.com/joewww/ethereum_node/commits/master)
 
 # ♢ ethereum_node
 
