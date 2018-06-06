@@ -1,6 +1,15 @@
 
 # ♢ ethereum_node
 
+## Overview
+
+![aws layout](/gfx/aws-eth.png)
+
+## Monthly Costs
+  - t2.medium: ~$33.41
+  - 120G EBS: ~$12.00
+  - Total     = $45.41
+
 ## AMI
   - using t2.medium (1x)
   - install geth: bin/install.sh
